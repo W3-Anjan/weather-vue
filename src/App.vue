@@ -79,7 +79,7 @@ export default{
         params: {q: this.destination, days: '30'},
         headers: {
           'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-          'X-RapidAPI-Key': 'ee63f3b69emshb06b9bf5709e36fp1eb79cjsn083704c21ec0'
+          'X-RapidAPI-Key': 'Enter your key here'
         }
       }
 
