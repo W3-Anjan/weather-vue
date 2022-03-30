@@ -5,7 +5,7 @@
             
             <article class="widget">
                 <label class="switch">
-                    <input type="checkbox" onchange="changeTempIndex({{temp_c}})">
+                    <input @click="changeTempIndex" type="checkbox">
                     <span class="slider round"></span>
                 </label>
                 <form @submit.prevent="fetchData" class="weatherLocation">
@@ -16,7 +16,10 @@
                 </div>
                 
                 <div class="weatherInfo">
-                    <div class="temperature"><span>{{temp_c}}°C</span></div>
+                    <div class="temperature">
+                      <span v-if="temp">{{temp_c}}°C</span>
+                      <span v-else>{{temp_f}}°F</span>
+                    </div>
                     <div class="description">    
                         <div class="weatherCondition">{{condition}}</div>    
                         <div class="place">
@@ -31,16 +34,13 @@
 
 <script>
 import axios from 'axios';
-//const KELVIN = 273
 
 export default{
 
   data() {
     return {
+      temp:true,
       destination: '',
-      query: 'london',
-      key : '82005d27a116c2880c8f0fcb866998a0',
-  
       place: '',
       region: '',
       country: '',
@@ -58,6 +58,11 @@ export default{
       this.destination = e.target.value;
     },
 
+    changeTempIndex() {
+      this.temp = !this.temp
+    },
+
+  
     dateBuilder () {
       
       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
